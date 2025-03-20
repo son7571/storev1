@@ -1,5 +1,7 @@
 package com.metacoding.storev1.store;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
@@ -14,11 +16,38 @@ public class StoreRepository {
         this.em = em;
     }
 
+    // 1번 :board 프로젝트의 BoardRepository 참고
+    public void deleteById(int id) {
+        Query query = em.createNativeQuery("delete from store_tb where id = ?");
+        query.setParameter(1, id);
+        query.executeUpdate();
+    }
+
     public void save(String name, int stock, int price) {
         Query query = em.createNativeQuery("insert into store_tb(name, stock, price) values(?,?,?)");
         query.setParameter(1, name);
         query.setParameter(2, stock);
         query.setParameter(3, price);
         query.executeUpdate();
+    }
+
+    public List<Store> findAll() {
+        // 조건 : 오브젝트 매핑은 @Entity가 붙어야지만 가능하다. (디폴트 생성자를 호출)
+        Query query = em.createNativeQuery("select * from store_tb order by id desc", Store.class);
+        return query.getResultList();
+
+    }
+
+    public Store findById(int id) {
+        Query query = em.createNativeQuery("select * from  store_tb  where id =?", Store.class);
+        query.setParameter(1, id);
+
+        try {
+            Store store = (Store) query.getSingleResult();
+            return store;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }
