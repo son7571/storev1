@@ -5,9 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor
+@Setter
 @Getter
 @NoArgsConstructor // jpa 가 ObjectMapping을 위해 new할때 사용함
 @Table(name = "store_tb")
