@@ -24,4 +24,9 @@ public class Store {
     private Integer stock; // 재고
     private Integer price;
 
+    public void 재고감소(int qty) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method '재고감소'");
+    }
+
 }
