@@ -19,9 +19,10 @@ public class LogController {
     }
 
     @PostMapping("/log/save")
-    public String save(@RequestParam("storeId") int storeId,  @RequestParam("buyer") String buyer, @RequestParam("qty") int qty){
-        logService.구매하기(storeId,buyer,qty);
-        return "redirect:/"
+    public String save(@RequestParam("storeId") int storeId, @RequestParam("buyer") String buyer,
+            @RequestParam("qty") int qty) {
+        logService.구매하기(storeId, buyer, qty);
+        return "redirect:/log";
     }
 
     @GetMapping("/log")
